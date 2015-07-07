@@ -1,17 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
+<html ng-app="chatApp">
 
-<html  np-app="chatAPP">
-	<head>
-		<!-- spells -->
-		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+<head>
+    <title> Simple Chatroom </title>
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <!-- spells -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+</head>
 
-	</head>
-
-	<body>
-		<p>Does this work? </p>
-
-	</body>
+<body>
+    <div class="clr" ng-controller="chatCtrl">
+        <div class="col">
+            <h3>Messages</h3>
+            <div class="overflowable">
+                <p ng-repeat="message in messages" ng-class="{alert: message.user == &quot;chatroom&quot;}">{{message.user}}: {{message.text}}</p>
+            </div>
+        </div>
+        <div class="col">
+            <h3>Users</h3>
+            <div class="overflowable">
+                <p ng-repeat="user in users">{{user}}</p>
+            </div>
+        </div>
+        <div class="clr">
+            <form ng-submit="sendMessage()">Message:
+                <input size="60" ng-model="message">
+                <input type="submit" value="Send">
+            </form>
+        </div>
+        <div class="clr">
+            <h3>Change your name</h3>
+            <p>Your current user name is {{name}}</p>
+            <form ng-submit="changeName()">
+                <input ng-model="newName">
+                <input type="submit" value="Change Name">
+            </form>
+        </div>
+        <h2>Small Chatroom</h2>
+        <p>
+            <textarea ng-model="message" cols="100" rows="15"></textarea>
+        </p>
+        <p>message: {{message}} </p>
+        <p>
+            <button ng-click="save()">Save</button>
+            <button ng-click="clear()">Clear</button>
+        </p>
+        <p>Number of characters left: <span ng-bind="left()"></span></p>
+    </div>
+    <script src="js/chatApp.js"></script>
+    <script src="js/chatCtrl.js"></script>
+    <script src="js/chatServices.js"></script>
+</body>
 
 </html>
-
-

@@ -3,16 +3,18 @@
 
 <head>
     <title> Simple Chatroom </title>
-    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- spells -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
 </head>
 
 <body>
     <div class="clr" ng-controller="chatCtrl">
         <div class="col">
-            <h3>Messages</h3>
+            <h3>Small Chatroom</h3>
             <div class="overflowable">
                 <p ng-repeat="message in messages" ng-class="{alert: message.user == &quot;chatroom&quot;}">{{message.user}}: {{message.text}}</p>
             </div>

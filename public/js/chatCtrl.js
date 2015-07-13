@@ -10,10 +10,10 @@
 
 
 // );
-
+//var todo = require('../../model/todo.js')
 app.controller('chatCtrl', 
 
-	function ($scope, socket) {
+	function ($scope, $http, socket) {
 		socket.on('init', function (data) {
 			$scope.name = data.name;
 			$scope.users = data.users;
@@ -88,6 +88,19 @@ app.controller('chatCtrl',
 			socket.emit('send:message', {
 				message: $scope.message
 			});
+			console.log("HAAHA" + $scope.message);
+
+			$http.post('/database', {message: $scope.message}).success(function(data, status, headers, config) {
+    			// this callback will be called asynchronously
+    			// when the response is available
+    		}).
+    		error(function(data, status, headers, config) {
+    			// called asynchronously if an error occurs
+    			// or server returns response with an error status.
+    		});
+
+
+
 
 			// add the message to our model locally
 			$scope.messages.push({
